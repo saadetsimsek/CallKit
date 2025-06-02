@@ -19,6 +19,7 @@ final class CallManager: NSObject, CXProviderDelegate {
     }
     
     public func reportIncomingCall(id: UUID, handle: String){
+        print("reporting incoming call")
         let update = CXCallUpdate()
         update.remoteHandle = CXHandle(type: .generic, value: handle)
         provider.reportNewIncomingCall(with: id, update: update) { error in
@@ -32,7 +33,18 @@ final class CallManager: NSObject, CXProviderDelegate {
     }
     
     public func starCall(id: UUID, handle: String){
-        
+        print("starting call")
+        let handle = CXHandle(type: .generic, value: handle)
+        let action = CXStartCallAction(call: id, handle: handle)
+        let transaction = CXTransaction(action: action)
+        cellController.request(transaction) { error in
+            if let error = error {
+                print(String(describing: error))
+            }
+            else {
+                print("call started")
+            }
+        }
     }
     
     func providerDidReset(_ provider: CXProvider) {

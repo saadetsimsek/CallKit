@@ -8,7 +8,7 @@
 import UIKit
 
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,7 +17,11 @@ class ViewController: UIViewController {
 
 
     func startDemo(){
-        
+        DispatchQueue.main.asyncAfter(deadline: .now()+2, execute: {
+            let callManager = CallManager()
+            let id = UUID()
+            callManager.reportIncomingCall(id: id, handle: "Tim Cook")
+        })
     }
 }
 

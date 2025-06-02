@@ -21,5 +21,12 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>voip</string>
+		<string>fetch</string>
+		<string>processing</string>
+		<string>push-to-talk</string>
+	</array>
 </dict>
 </plist>
